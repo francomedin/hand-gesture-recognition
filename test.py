@@ -1,5 +1,3 @@
-from pyexpat import model
-from turtle import width
 import cv2
 import mediapipe as mp
 import numpy as np
@@ -18,11 +16,13 @@ index = 0
 offset = 25
 image_size = 300
 
-folder = "data/A"
 counter = 0
 
 labels = ["Hurry", "Okay", "Help"]
+"""
+Proponer 1 sola señal
 
+"""
 # For webcam input:
 cap = cv2.VideoCapture(0)
 with mp_hands.Hands(
