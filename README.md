@@ -17,7 +17,7 @@ Hand Gesture Recognition is a project to create signals and the recognize them i
 ## Folder structure
 
 .
-├── data                   # Images.
+├── example_data           # Example images.
 ├── model                  # Keras model.
 ├── .gitignore             # Git file to ignore files.
 ├── classifier.py          # Model Loader.
@@ -68,3 +68,10 @@ pip install -r requirements. txt
 |accuracy|-|-|0.8|259|
 |macro avg|0.84|0.80|0.80|259|
 |weighted avg|0.83 |0.8|0.8|259|
+
+
+## Next steps
+
+- Develop a CNN to improve perfomance.
+- Create new signals.
+- Investigate edge devices to run the model.
