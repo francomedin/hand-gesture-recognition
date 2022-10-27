@@ -2,4 +2,4 @@ prueba.mp4
 model/converted_keras/
 data/
 
-__pycache__/
+__pycache__
