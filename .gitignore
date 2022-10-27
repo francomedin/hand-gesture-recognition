@@ -1,3 +1,5 @@
-prueba.mkv
+prueba.mp4
 model/converted_keras/
 data/
+
+__pycache__/
