@@ -1,5 +1,6 @@
 prueba.mp4
-model/converted_keras/
-data/
 
-__pycache__
+data/
+.vscode/
+__pycache__/
+hand_gesture_venv

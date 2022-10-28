@@ -7,12 +7,22 @@ import os
 model = Classifier(
     "model/converted_keras/keras_model.h5", "model/converted_keras/labels.txt"
 )
-labels = ["A", "B", "C", "D"]
+LABELS = ["A", "B", "C", "D"]
 
 
 def evaluation(data_folder: str):
-    """Predict all the labels in the test folder"""
+    """
+    Walk between the data_folder and classify the images. Then return 
+    y_pred and y_true/y_test.
+    ----------
 
+    data_folder : str
+
+    Returns
+    -------
+    y_pred: list
+    y_true: list
+    """
     counter = 0
     diferences = 0
     lst_bad_inference = []
@@ -25,14 +35,17 @@ def evaluation(data_folder: str):
                 image_path = os.path.join(root, name)
                 image = cv2.imread(image_path)
 
+                # Get predictions and save labels
                 _, idx = model.getPrediction(image)
                 counter += 1
                 label = root.split("\\")[1]
-                y_true.append(labels.index(label))
+                y_true.append(LABELS.index(label))
                 y_pred.append(idx)
 
-                print(f"Label {label} | indice: {labels[idx]}")
-                if label != labels[idx]:
+                print(f"Label {label} | indice: {LABELS[idx]}")
+                
+                # Save wrong predictions
+                if label != LABELS[idx]:
                     diferences += 1
                     lst_bad_inference.append({"Prediction": _, "y_true": label})
 
@@ -40,12 +53,12 @@ def evaluation(data_folder: str):
     print(f"Total images: {counter}")
     for inference in lst_bad_inference:
         print(
-            f'Bad inference: predicted: {labels[idx]} | y_true = {inference["y_true"]}'
+            f'Bad inference: predicted: {LABELS[idx]} | y_true = {inference["y_true"]}'
         )
 
     print(classification_report(y_true, y_pred))
 
-    return y_pred, y_true
+    return y_true, y_pred
 
 
 if __name__ == "__main__":

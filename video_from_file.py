@@ -3,7 +3,7 @@ import mediapipe as mp
 from Classifier import Classifier
 from utils import draw_rectangle, predict, detect_hand
 
-
+# Mediapipe initiation.
 mp_drawing = mp.solutions.drawing_utils
 mp_drawing_styles = mp.solutions.drawing_styles
 mp_hands = mp.solutions.hands
@@ -11,16 +11,14 @@ mp_hands = mp.solutions.hands
 classifier = Classifier(
     "model/converted_keras/keras_model.h5", "model/converted_keras/labels.txt"
 )
+
 index = 0
-image_size = 300
-offset = 25
-
-video_name = ""
-
-labels = ["A", "B", "C", "D"]
+OFFSET = 25
+VIDEO_NAME = "YOUR_VIDEO_NAME.MP4"
+LABELS = ["A", "B", "C", "D"]
 
 # Video Name
-cap = cv2.VideoCapture(video_name)
+cap = cv2.VideoCapture(VIDEO_NAME)
 
 with mp_hands.Hands(
     model_complexity=0,
@@ -56,22 +54,22 @@ with mp_hands.Hands(
                 x_max, x_min, y_max, y_min, image = draw_rectangle(results, image=image)
                 # Create a white image for background
                 img_crop = image[
-                    y_min - offset : y_max + offset, x_min - offset : x_max + offset
+                    y_min - OFFSET : y_max + OFFSET, x_min - OFFSET : x_max + OFFSET
                 ]
                 prediction, index, img_white = predict(img_crop, h, w, classifier)
 
-                # Show images
+                # Show images only for the right hand
                 if label == "Right":
                     cv2.putText(
                         image,
-                        labels[index],
+                        LABELS[index],
                         (x_max, y_max - 20),
                         cv2.FONT_HERSHEY_COMPLEX,
                         2,
                         (255, 0, 255),
                         2,
                     )
-                cv2.imshow("Image-cropped", img_crop)
+                #cv2.imshow("Image-cropped", img_crop)
                 # cv2.imshow('Image-cropped', image_hand)
                 cv2.imshow("Image-white", img_white)
 
@@ -81,12 +79,11 @@ with mp_hands.Hands(
                 pass
 
         cv2.imshow("Image", image)
+
         # Exit video
         if cv2.waitKey(10) & 0xFF == ord("q"):
             break
-        # if frame is read correctly ret is True
 
-        if cv2.waitKey(1) == ord("q"):
-            break
+        
 cap.release()
 cv2.destroyAllWindows()

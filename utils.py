@@ -73,7 +73,7 @@ def predict(img_crop, h, w, classifier=None):
     """
 
     image_size = 300
-
+    # Create a white image for background
     img_white = np.ones((image_size, image_size, 3), np.uint8) * 255
     aspect_ratio = h / w
     prediction, idx = "", 0

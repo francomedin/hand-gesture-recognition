@@ -2,7 +2,7 @@
 
 
 # Hand Gesture Recognition
-## _Project to recognize signals_
+## _Project to recognize hand signals_
 
 
 Hand Gesture Recognition is a project to create signals and the recognize them in streaming or video.
@@ -14,31 +14,37 @@ Hand Gesture Recognition is a project to create signals and the recognize them i
 - Monitor your model´s perfomance.
 - Predict from streaming or video.mp4 files.
 
-## Folder structure
+## Project tree
 
 .
-├── example_data           # Example images.
-├── model                  # Keras model.
-├── .gitignore             # Git file to ignore files.
-├── classifier.py          # Model Loader.
-├── data_collection.py     # Script to create labeled images with camera.
-├── detect_hand.py         # Script to detect which hand is in the video. (left, right or both)
-├── evaluation.py          # Script to evaluate our model based on test images.
-├── README.md              # Project Description
-├── requirements.txt       # Libraries and moldules used in the project.
-├── test_hand_label.py     # Script to test the model with the webcam.       
-├── utils.py               # Tools and utilities
-└── video_from_file.md     # Script to test the model with a video.mp4
+ * example_data
+   * A
+        * images
+   * B
+        * images
+   * C
+        * images
+   * D
+        * images
+ * model
+   * keras_model.h5
+   * labels.txt
+ * .gitignore
+ * Classifier.py
+ * data_collection.py
+ * detect_hand.py
+ * evaluation.py
+ * README.md
+ * requirements.txt
+ * test_hand_label.py
+ * utils.py
+ * video_from_file.py
 
 
 
-This text you see here is *actually- written in Markdown! To get a feel
-for Markdown's syntax, type some text into the left window and
-watch the results in the right.
 
 ## Tech
 
-HGR uses a number of open source projects to work properly:
 
 - Python
 - OpenCV
@@ -48,9 +54,15 @@ HGR uses a number of open source projects to work properly:
 
 ## Installation
 
----> Crear entorno e instalar dependencias.
+pip install -r requirements.txt
 
-pip install -r requirements. txt
+- For left-right-both hand detection:
+*       python detect_hand.py
+- For hand and gesture detection from web cam:
+*       python test_hand_label.py
+- For hand and gesture detection from video (.mp4):
+*       python video_form_file.py
+
 
 ## Model Result
 
@@ -64,14 +76,19 @@ pip install -r requirements. txt
 
 
 
----- > Corregir tabla
+|Metrics|  Values |  Values |Values |  support |
+|---|---|---|---|---|
 |accuracy|-|-|0.8|259|
 |macro avg|0.84|0.80|0.80|259|
-|weighted avg|0.83 |0.8|0.8|259|
+|weighted avg|0.83|0.80|0.80|259|
+
+For info about multiclass metrics https://bit.ly/3gQmBjE
 
 
 ## Next steps
 
 - Develop a CNN to improve perfomance.
-- Create new signals.
+- Segment hands of the image to remove the background.
+- Create new signals (just 4 at the moment)
 - Investigate edge devices to run the model.
+- Pass variables through console (argparser)
